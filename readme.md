@@ -3,3 +3,4 @@
 ### Linia z fix_001
 #### 1.1 Nowy projekt Django
 ##### 1.1.1 Przygotowanie środowiska wirtualnego 
+blable 
