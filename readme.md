@@ -1,1 +1,3 @@
-‣牐橯步潴慷楮⁥灡楬慫橣൩⌊‣慎穲摥楺⁡楧൴⌊⌣氠湩慩稠映硩た㄰਍
+# Projektowanie aplikacji
+## Narzędzie git
+### Linia z fix_001
