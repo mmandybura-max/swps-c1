@@ -1,6 +1,9 @@
-# Projektowanie aplikacji
-## Narzędzie git
-### Linia z fix_001
-#### 1.1 Nowy projekt Django
-##### 1.1.1 Przygotowanie środowiska wirtualnego 
-blable 
+## Biblioteczka
+
+### Projekt aplikacji
+Szczegóły w [osobnym pliku](project.md).
+
+### Instalowanie
+* Skrypt `install.sh` instaluje środowisko wirtualne.
+* Skrypt `activate.sh` aktywuje środowisko wirtualne.
+* Skrypt `requirements.sh` instaluje paczki z pliku `requirements.txt`.
