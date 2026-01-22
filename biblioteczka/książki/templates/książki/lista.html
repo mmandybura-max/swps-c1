@@ -1,0 +1,12 @@
+{% extends "książki/szablon.html" %}
+
+{% block title %}Lista książek{% endblock %}
+
+{% block content %}
+Lista książek:
+{% for książka in książki %}
+<p>Tytuł: {{ książka.tytuł }}</p>
+<p>Opis: {{ książka.opis }}</p>
+<hr>
+{% endfor %}
+{% endblock %}

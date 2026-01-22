@@ -1,0 +1,8 @@
+{% extends "książki/szablon.html" %}
+
+{% block title %}Książka „{{ książka.tytuł }}”{% endblock %}
+
+{% block content %}
+<p>Tytuł: {{ książka.tytuł }}</p>
+<p>Opis: {{ książka.opis }}</p>
+{% endblock %}
