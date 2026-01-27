@@ -42,3 +42,13 @@ class Książka(models.Model):
     właściciel = models.ForeignKey(Osoba, on_delete=models.PROTECT)
     stan = models.IntegerField(choices=STAN)
     notatki = models.TextField(null=True)
+
+class Wypozyczenie(models.Model):
+    ksiazka = models.ForeignKey(Książka, on_delete=models.CASCADE)
+    osoba = models.ForeignKey(Osoba, on_delete=models.CASCADE)
+    data_wypozyczenia = models.DateField(auto_now_add=True)
+    data_zwrotu = models.DateField(null=True, blank=True)
+    notatki = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.ksiazka} - {self.osoba}"
