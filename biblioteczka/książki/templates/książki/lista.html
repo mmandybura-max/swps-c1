@@ -3,10 +3,48 @@
 {% block title %}Lista książek{% endblock %}
 
 {% block content %}
-Lista książek:
+<h2>Lista książek</h2>
+
 {% for książka in książki %}
-<p>Tytuł: {{ książka.tytuł }}</p>
-<p>Opis: {{ książka.opis }}</p>
-<hr>
+  <div>
+    <h3>{{ książka.tytuł }}</h3>
+    <p><strong>Opis:</strong> {{ książka.opis }}</p>
+
+    <a href="/książki/{{ książka.id }}/">Zobacz szczegóły</a>
+  </div>
+  <hr>
+{% empty %}
+  <p>Brak książek w bazie.</p>
+{% endfor %}
+
+{% endblock %}
+
+{% block title %}Lista autorów{% endblock %}
+
+{% block content %}
+<h2>Lista autorów</h2>
+
+{% for autor in autorzy %}
+  <p>
+    {{ autor }}
+    <a href="/ksiazki/autorzy/{{ autor.id }}/">Szczegóły</a>
+  </p>
+{% empty %}
+  <p>Brak autorów w bazie.</p>
+{% endfor %}
+{% endblock %}
+
+{% block title %}Wypożyczenia{% endblock %}
+
+{% block content %}
+<h2>Wypożyczenia</h2>
+
+{% for w in wypożyczenia %}
+  <p>
+    {{ w }}
+    <a href="/ksiazki/wypozyczenia/{{ w.id }}/">Szczegóły</a>
+  </p>
+{% empty %}
+  <p>Brak wypożyczeń w bazie.</p>
 {% endfor %}
 {% endblock %}

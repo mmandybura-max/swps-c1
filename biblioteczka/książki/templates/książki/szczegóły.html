@@ -3,6 +3,23 @@
 {% block title %}Książka „{{ książka.tytuł }}”{% endblock %}
 
 {% block content %}
-<p>Tytuł: {{ książka.tytuł }}</p>
+<h2>Tytuł: {{ książka.tytuł }}</h2>
 <p>Opis: {{ książka.opis }}</p>
+<a href="/książki"> Wróć do listy</a>
+{% endblock %}
+
+{% extends "książki/szablon.html" %}
+{% block title %}Osoba{% endblock %}
+
+{% block content %}
+<h2>{{ osoba }}</h2>
+<a href="/ksiazki/osoby/">← Wróć</a>
+{% endblock %}
+
+{% extends "książki/szablon.html" %}
+{% block title %}Wypożyczenia{% endblock %}
+
+{% block content %}
+<h2>{{ wypożyczenia }}</h2>
+<a href="/ksiazki/wypozyczenia/">← Wróć</a>
 {% endblock %}

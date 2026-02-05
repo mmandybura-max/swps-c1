@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
-from .models import Książka, Autor
+from .models import Książka, Autor, Osoba, Wypozyczenie
 
 
 def welcome_view(request):
@@ -27,10 +27,10 @@ def książka_szczegóły(request, id):
                   "książki/szczegóły.html",
                   {'książka': książka})\
                   
-def autor_list(request):
-    autory = Autor.objects.all()
-    imiona = "br".join([f"{a.imię}{a.nazwisko}" for a in autory])
-    return HttpResponse(f"<h1>Lista Autorów:</h1>{imiona}")
+def autor_lista(request):
+    if request.method == "GET":
+        autorzy = Autor.objects.all()
+        return render(request, "autor/lista.html", {"autorzy": autorzy})
 
 def autor_szczegóły(request, id):
     autor = Autor.objects.get(id=id)
@@ -38,3 +38,20 @@ def autor_szczegóły(request, id):
     return render(request, 
                   "autor/szczegóły.html",
                   {'autor': autor})
+
+def osoba_lista(request):
+    osoby = Osoba.objects.all()
+    return render(request, "osoba/lista.html",
+                  {"osoby": osoby})
+
+def osoba_szczegóły(request, id):
+    osoba =Osoba.objects.get(id=id)
+    return render(request, "osoba/szczegóły.html", {"osoba": osoba})
+
+def wypozyczenie_lista(request):
+    wypozyczenia = Wypozyczenie.objekts.all()
+    return render(request, "wypozyczenie/lista.html", 
+                  {"wypozyczenia": wypozyczenia})
+def wypozyczenie_szczegóły(request, id):
+    wypozyczenie = Wypozyczenie.objects.get(id=id)
+    return render(request, "wypozyczenie/szczegóły.html", {"wypozyczenie": wypozyczenie})
