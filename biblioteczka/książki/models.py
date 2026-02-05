@@ -53,11 +53,11 @@ class Książka(models.Model):
     isbn = models.CharField(max_length=30)
     jakość = models.IntegerField(choices=JAKOŚĆ, null=True)
     właściciel = models.ForeignKey(Osoba, on_delete=models.PROTECT)
-    stan = models.CharField(choices=STAN)
+    stan = models.CharField(max_length=30,choices=STAN)
     notatki = models.TextField(null=True)
 
     class Meta:
-        verbose_name_plural = "Ksiąki"
+        verbose_name_plural = "Książki"
         ordering = ['tytuł']
 
     def __str__(self):

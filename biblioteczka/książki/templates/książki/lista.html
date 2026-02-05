@@ -18,33 +18,3 @@
 {% endfor %}
 
 {% endblock %}
-
-{% block title %}Lista autorów{% endblock %}
-
-{% block content %}
-<h2>Lista autorów</h2>
-
-{% for autor in autorzy %}
-  <p>
-    {{ autor }}
-    <a href="/ksiazki/autorzy/{{ autor.id }}/">Szczegóły</a>
-  </p>
-{% empty %}
-  <p>Brak autorów w bazie.</p>
-{% endfor %}
-{% endblock %}
-
-{% block title %}Wypożyczenia{% endblock %}
-
-{% block content %}
-<h2>Wypożyczenia</h2>
-
-{% for w in wypożyczenia %}
-  <p>
-    {{ w }}
-    <a href="/ksiazki/wypozyczenia/{{ w.id }}/">Szczegóły</a>
-  </p>
-{% empty %}
-  <p>Brak wypożyczeń w bazie.</p>
-{% endfor %}
-{% endblock %}

@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Książka, Autor
+from .models import Książka
 
-class KsiążkaSerializer(serializers.Serializer):
+class KsiążkaSerializer(serializers.ModelSerializer):
 
     id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=True)
-    description = serializers.CharField(required=True)
+    tytuł = serializers.CharField(required=True)
+    notatki = serializers.CharField(required=True)
 
     # przesłonięcie metody create() z klasy serializers.Serializer
     def create(self, validated_data):
@@ -14,12 +14,12 @@ class KsiążkaSerializer(serializers.Serializer):
     # przesłonięcie metody update() z klasy serializers.Serializer
     # wykorzystania przy żądaniach
     def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.name)
-        instance.description = validated_data.get('description', instance.description)
+        instance.tytuł = validated_data.get('tyuł', instance.tytuł)
+        instance.notatki = validated_data.get('notatki', instance.notatki)
         instance.save()
         return instance
 
-    def validate_name(self, value):
+    def validate_tytuł(self, value):
         temp_value = value.strip().replace(' ', '')
         if not temp_value.isalpha():
             raise serializers.ValidationError(
@@ -27,25 +27,10 @@ class KsiążkaSerializer(serializers.Serializer):
             )
         return value
 
-    def validate_description(self, value):
+    def validate_notatki(self, value):
         temp_value = value.strip().replace(' ', '')
         if not temp_value.isalpha():
             raise serializers.ValidationError(
                 "Opis musi zawierać tylko litery.!",
             )
         return value
-
-class Autorserializer(serializers.ModelSerializer):
-    class Meta:
-        model = Autor
-        fields = ['id', 'name', 'surname', 'url', 'notes']
-
-class KsiąkaSerializer(serializers.ModelSerializer):
-    Autorserializer(read_only=True)
-
-    autor_id = serializers.PrimaryKeyRelatedField(queryset=Autor.objects.all(),
-    source='autor', write_only=True)
-    
-    class Meta:
-        model = Książka
-        fields = ['id', 'tytuł', 'autor', 'autor_id', 'isbn', 'jakość', 'stan', 'notatki']
