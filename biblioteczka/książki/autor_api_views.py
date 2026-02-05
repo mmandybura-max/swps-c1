@@ -1,61 +1,61 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Książka
-from .serializers import KsiążkaSerializer
+from .models import Autor
+from .serializers import AutorSerializer
 
 
 @api_view(['GET'])
-def książka_lista(request):
+def autor_lista(request):
     """
-    Lista wszystkich obiektów modelu Książka.
+    Lista wszystkich obiektów modelu Autor.
     """
-    książki = Książka.objects.all()
-    serializer = KsiążkaSerializer(książki, many=True)
+    autorzy = Autor.objects.all()
+    serializer = AutorSerializer(autorzy, many=True)
     return Response(serializer.data)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def książka_szczegóły(request, pk):
+def autor_szczegóły(request, pk):
 
     """
     :param request: obiekt DRF Request
-    :param pk: id obiektu Książka
+    :param pk: id obiektu Autor
     :return: Response (with status and/or object/s data)
     """
     try:
-        książka = Książka.objects.get(pk=pk)
-    except Książka.DoesNotExist:
+        autor = Autor.objects.get(pk=pk)
+    except Autor.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     """
-    Zwraca pojedynczy obiekt typu Książka.
+    Zwraca pojedynczy obiekt typu Autor.
     """
     if request.method == 'GET':
-        książka = Książka.objects.get(pk=pk)
-        serializer = KsiążkaSerializer(książka)
+        autor = Autor.objects.get(pk=pk)
+        serializer = AutorSerializer(autor)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = KsiążkaSerializer(książka, data=request.data)
+        serializer = AutorSerializer(autor, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        książka.delete()
+        autor.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
-def książka_nowa(request):
-    serializer = KsiążkaSerializer(data=request.data)
+def autor_nowa(request):
+    serializer = AutorSerializer(data=request.data)
     if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def książka_wg_nazwy(request, fraza):
-    książki = Książka.objects.filter(tytuł__icontains=fraza)
-    serializer = KsiążkaSerializer(książki, many=True)
+def autor_wg_nazwy(request, fraza):
+    autorzy = Autor.objects.filter(tytuł__icontains=fraza)
+    serializer = AutorSerializer(autorzy, many=True)
     return Response(serializer.data)

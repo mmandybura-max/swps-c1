@@ -30,13 +30,13 @@ def książka_szczegóły(request, id):
 def autor_lista(request):
     if request.method == "GET":
         autorzy = Autor.objects.all()
-        return render(request, "autor/lista.html", {"autorzy": autorzy})
+        return render(request, "autorzy/lista.html", {"autorzy": autorzy})
 
 def autor_szczegóły(request, id):
     autor = Autor.objects.get(id=id)
 
     return render(request, 
-                  "autor/szczegóły.html",
+                  "autorzy/szczegóły.html",
                   {'autor': autor})
 
 def osoba_lista(request):

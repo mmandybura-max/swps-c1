@@ -1,0 +1,24 @@
+{% extends "książki/szablon.html" %}
+{% block title %}Autor{% endblock %}
+
+{% block content %}
+<h2>{{ autor.imię }} {{ autor.nazwisko }}</h2>
+
+<p><strong>URL:</strong>
+  {% if autor.url %}
+    <a href="{{ autor.url }}">{{ autor.url }}</a>
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><strong>Notatki:</strong>
+  {% if autor.notatki %}
+    {{ autor.notatki }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><a href="/ksiazki/autorzy/">← Wróć do listy autorów</a></p>
+{% endblock %}

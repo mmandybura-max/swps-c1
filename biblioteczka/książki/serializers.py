@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Książka
+from .models import Książka, Autor
 
 class KsiążkaSerializer(serializers.ModelSerializer):
 
@@ -34,3 +34,15 @@ class KsiążkaSerializer(serializers.ModelSerializer):
                 "Opis musi zawierać tylko litery.!",
             )
         return value
+
+class AutorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Autor
+        fields = '__all__'
+        # fields = ['id', 'tytuł', 'autor', 'autor_id', 'isbn', 'jakość', 'stan', ]
+
+    autor_id = serializers.PrimaryKeyRelatedField(
+        queryset=Autor.objects.all(),
+        source='autor',
+        write_only=True
+    )
