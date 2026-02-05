@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
-from .models import Książka, Autor, Osoba, Wypozyczenie
+from .models import Książka, Autor, Osoba, Wypożyczenie
 
 
 def welcome_view(request):
@@ -49,9 +49,9 @@ def osoba_szczegóły(request, id):
     return render(request, "osoby/szczegóły.html", {"osoba": osoba})
 
 def wypozyczenie_lista(request):
-    wypozyczenia = Wypozyczenie.objekts.all()
-    return render(request, "wypozyczenie/lista.html", 
-                  {"wypozyczenia": wypozyczenia})
+    wypożyczenia = Wypożyczenie.objekts.all()
+    return render(request, "wypożyczenia/lista.html",
+                  {"wypożyczenia": wypożyczenia})
 def wypozyczenie_szczegóły(request, id):
-    wypozyczenie = Wypozyczenie.objects.get(id=id)
-    return render(request, "wypozyczenie/szczegóły.html", {"wypozyczenie": wypozyczenie})
+    wypożyczenie = Wypożyczenie.objects.get(id=id)
+    return render(request, "wypożyczenia/szczegóły.html", {"wypożyczenie": wypożyczenie})

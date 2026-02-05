@@ -1,0 +1,44 @@
+{% extends "książki/szablon.html" %}
+{% block title %}Wypożyczenie{% endblock %}
+
+{% block content %}
+<h2>Wypożyczenie</h2>
+
+<p><strong>Książka:</strong> {{ wypożyczenie.ksiazka }}</p>
+<p><strong>Osoba:</strong> {{ wypożyczenie.osoba }}</p>
+
+<p><strong>Data wypożyczenia:</strong> {{ wypożyczenie.data_wypozyczenia }}</p>
+<p><strong>Data zwrotu:</strong>
+  {% if wypożyczenie.data_zwrotu %}
+    {{ wypożyczenie.data_zwrotu }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><strong>Jakość wypożyczenia:</strong>
+  {% if wypożyczenie.jakość_wypozyczenia %}
+    {{ wypożyczenie.jakość_wypozyczenia }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><strong>Jakość zwrotu:</strong>
+  {% if wypożyczenie.jakość_zwrotu %}
+    {{ wypożyczenie.jakość_zwrotu }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><strong>Notatki:</strong>
+  {% if wypożyczenie.notatki %}
+    {{ wypożyczenie.notatki }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><a href="/ksiazki/wypozyczenia/">← Wróć do listy wypożyczeń</a></p>
+{% endblock %}

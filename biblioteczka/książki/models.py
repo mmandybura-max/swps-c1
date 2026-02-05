@@ -63,19 +63,19 @@ class Książka(models.Model):
     def __str__(self):
         return self.tytuł
 
-class Wypozyczenie(models.Model):
+class Wypożyczenie(models.Model):
     JAKOŚĆ = [(i, i) for i in range(1, 11)]
 
-    ksiazka = models.ForeignKey(Książka, on_delete=models.CASCADE)
+    książka = models.ForeignKey(Książka, on_delete=models.CASCADE)
     osoba = models.ForeignKey(Osoba, on_delete=models.CASCADE)
-    data_wypozyczenia = models.DateField(auto_now_add=True)
+    data_wypożyczenia = models.DateField(auto_now_add=True)
     data_zwrotu = models.DateField(null=True, blank=True)
-    jakość_wypozyczenia = models.IntegerField(choices=JAKOŚĆ, null=True, blank=True)
+    jakość_wypożyczenia = models.IntegerField(choices=JAKOŚĆ, null=True, blank=True)
     jakość_zwrotu = models.IntegerField(choices=JAKOŚĆ, null=True, blank=True)
     notatki = models.TextField(null=True, blank=True)
 
     class Meta:
-        ordering = ['-data_wypozyczenia']
+        ordering = ['-data_wypożyczenia']
 
     def __str__(self):
-        return f"{self.ksiazka} - {self.osoba}"
+        return f"{self.książka} - {self.osoba}"

@@ -1,0 +1,16 @@
+{% extends "książki/szablon.html" %}
+
+{% block title %}Wypożyczenia{% endblock %}
+
+{% block content %}
+<h2>Wypożyczenia</h2>
+
+{% for w in wypożyczenia %}
+  <p>
+    {{ w }}
+    <a href="/książki/wypożyczenia/{{ w.id }}/">Szczegóły</a>
+  </p>
+{% empty %}
+  <p>Brak wypożyczeń w bazie.</p>
+{% endfor %}
+{% endblock %}

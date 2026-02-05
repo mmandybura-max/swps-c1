@@ -1,5 +1,5 @@
 from django.urls import path
-from . import książka_api_views, autor_api_views, osoba_api_views
+from . import książka_api_views, autor_api_views, osoba_api_views, wypożyczenie_api_views
 
 urlpatterns = [
     path('książki/', książka_api_views.książka_lista),
@@ -16,4 +16,9 @@ urlpatterns = [
     path('osoby/<int:pk>/', osoba_api_views.osoba_szczegóły),
     path('osoby/nowa/', osoba_api_views.osoba_nowa),
     path('osoby/szukaj/<str:phrase>/', osoba_api_views.osoba_wg_nazwy),
+
+    path('wypożyczenia/', wypożyczenie_api_views.wypożyczenie_lista),
+    path('wypożyczenia/<int:pk>/', wypożyczenie_api_views.wypożyczenie_szczegóły),
+    path('wypożyczenia/nowa/', wypożyczenie_api_views.wypożyczenie_nowa),
+    path('wypożyczenia/szukaj/<str:phrase>/', wypożyczenie_api_views.wypożyczenie_wg_nazwy),
 ]

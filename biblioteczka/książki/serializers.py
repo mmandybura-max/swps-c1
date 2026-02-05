@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Książka, Autor, Osoba
+from .models import Książka, Autor, Osoba, Wypożyczenie
 
 class KsiążkaSerializer(serializers.ModelSerializer):
 
@@ -44,7 +44,11 @@ class OsobaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Osoba
         fields = '__all__'
-        # fields = ['id', 'tytuł', 'autor', 'autor_id', 'isbn', 'jakość', 'stan', ]
+
+class WypożyczenieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wypożyczenie
+        fields = '__all__'
 
     autor_id = serializers.PrimaryKeyRelatedField(
         queryset=Autor.objects.all(),
