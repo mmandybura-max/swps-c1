@@ -1,0 +1,24 @@
+{% extends "książki/szablon.html" %}
+{% block title %}Osoba{% endblock %}
+
+{% block content %}
+<h2>{{ osoba.imię }} {{ osoba.nazwisko }}</h2>
+
+<p><strong>Telefon:</strong>
+  {% if osoba.telefon %}
+    {{ osoba.telefon }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><strong>Notatki:</strong>
+  {% if osoba.notatki %}
+    {{ osoba.notatki }}
+  {% else %}
+    brak
+  {% endif %}
+</p>
+
+<p><a href="/ksiazki/osoby/">← Wróć do listy osób</a></p>
+{% endblock %}

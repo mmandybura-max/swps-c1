@@ -1,0 +1,18 @@
+{% extends "książki/szablon.html" %}
+{% block title %}Osoby{% endblock %}
+
+{% block content %}
+<h2>Lista osób</h2>
+
+<ul>
+  {% for osoba in osoby %}
+    <li>
+      <strong>{{ osoba.imię }} {{ osoba.nazwisko }}</strong>
+      {% if osoba.telefon %}- tel: {{ osoba.telefon }}{% endif %}
+      — <a href="/ksiazki/osoby/{{ osoba.id }}/">Szczegóły</a>
+    </li>
+  {% empty %}
+    <li>Brak osób w bazie.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

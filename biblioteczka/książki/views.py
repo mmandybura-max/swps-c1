@@ -41,12 +41,12 @@ def autor_szczegóły(request, id):
 
 def osoba_lista(request):
     osoby = Osoba.objects.all()
-    return render(request, "osoba/lista.html",
+    return render(request, "osoby/lista.html",
                   {"osoby": osoby})
 
 def osoba_szczegóły(request, id):
     osoba =Osoba.objects.get(id=id)
-    return render(request, "osoba/szczegóły.html", {"osoba": osoba})
+    return render(request, "osoby/szczegóły.html", {"osoba": osoba})
 
 def wypozyczenie_lista(request):
     wypozyczenia = Wypozyczenie.objekts.all()
