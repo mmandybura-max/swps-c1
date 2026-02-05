@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Osoba
-from .serializers import OsobaSerializer
+from .models import Osoba, Wypożyczenie
+from .serializers import OsobaSerializer, WypożyczenieSerializer
 
 
 @api_view(['GET'])
@@ -45,6 +45,18 @@ def osoba_szczegóły(request, pk):
     elif request.method == 'DELETE':
         osoba.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def osoba_wypożyczenia(request, pk):
+
+    try:
+        osoba = Osoba.objects.get(pk=pk)
+    except Osoba.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    wypożyczenia = Wypożyczenie.objects.filter(osoba=osoba)
+    serializer = WypożyczenieSerializer(wypożyczenia, many=True)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def osoba_nowa(request):

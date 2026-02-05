@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('osoby/', osoba_api_views.osoba_lista),
     path('osoby/<int:pk>/', osoba_api_views.osoba_szczegóły),
+    path('osoby/<int:pk>/wypożyczenia', osoba_api_views.osoba_wypożyczenia),
     path('osoby/nowa/', osoba_api_views.osoba_nowa),
     path('osoby/szukaj/<str:phrase>/', osoba_api_views.osoba_wg_nazwy),
 
