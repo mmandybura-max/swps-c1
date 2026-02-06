@@ -2,7 +2,10 @@ from rest_framework import serializers
 from .models import Książka, Autor, Osoba, Wypożyczenie
 
 class KsiążkaSerializer(serializers.ModelSerializer):
-
+    class Meta:
+        model = Książka
+        fields = '__all__'
+        
     id = serializers.IntegerField(read_only=True)
     tytuł = serializers.CharField(required=True)
     notatki = serializers.CharField(required=True)

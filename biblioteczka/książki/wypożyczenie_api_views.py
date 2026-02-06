@@ -1,11 +1,15 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Wypożyczenie
 from .serializers import WypożyczenieSerializer
 
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def wypożyczenie_lista(request):
     """
     Lista wszystkich obiektów modelu Wypożyczenie.
@@ -15,6 +19,8 @@ def wypożyczenie_lista(request):
     return Response(serializer.data)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def wypożyczenie_szczegóły(request, pk):
 
     """
@@ -47,6 +53,8 @@ def wypożyczenie_szczegóły(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def wypożyczenie_nowa(request):
     serializer = WypożyczenieSerializer(data=request.data)
     if serializer.is_valid():
@@ -55,6 +63,8 @@ def wypożyczenie_nowa(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def wypożyczenie_wg_nazwy(request, fraza):
     wypożyczenia = Wypożyczenie.objects.filter(tytuł__icontains=fraza)
     serializer = WypożyczenieSerializer(wypożyczenia, many=True)

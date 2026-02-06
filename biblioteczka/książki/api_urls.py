@@ -1,4 +1,6 @@
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
+
 from . import książka_api_views, autor_api_views, osoba_api_views, wypożyczenie_api_views
 
 urlpatterns = [
@@ -22,4 +24,6 @@ urlpatterns = [
     path('wypożyczenia/<int:pk>/', wypożyczenie_api_views.wypożyczenie_szczegóły),
     path('wypożyczenia/nowa/', wypożyczenie_api_views.wypożyczenie_nowa),
     path('wypożyczenia/szukaj/<str:fraza>/', wypożyczenie_api_views.wypożyczenie_wg_nazwy),
+
+    path('token', obtain_auth_token),
 ]

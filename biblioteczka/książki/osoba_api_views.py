@@ -1,11 +1,15 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Osoba, Wypożyczenie
 from .serializers import OsobaSerializer, WypożyczenieSerializer
 
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def osoba_lista(request):
     """
     Lista wszystkich obiektów modelu Osoba.
@@ -15,6 +19,8 @@ def osoba_lista(request):
     return Response(serializer.data)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def osoba_szczegóły(request, pk):
 
     """
@@ -47,6 +53,8 @@ def osoba_szczegóły(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def osoba_wypożyczenia(request, pk):
 
     try:
@@ -59,6 +67,8 @@ def osoba_wypożyczenia(request, pk):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def osoba_nowa(request):
     serializer = OsobaSerializer(data=request.data)
     if serializer.is_valid():
@@ -67,6 +77,8 @@ def osoba_nowa(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def osoba_wg_nazwy(request, fraza):
     osoby = Osoba.objects.filter(tytuł__icontains=fraza)
     serializer = OsobaSerializer(osoby, many=True)
