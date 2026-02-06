@@ -56,6 +56,6 @@ def autor_nowa(request):
 
 @api_view(['GET'])
 def autor_wg_nazwy(request, fraza):
-    autorzy = Autor.objects.filter(tytuł__icontains=fraza)
+    autorzy = Autor.objects.filter(nazwisko__icontains=fraza) | Autor.objects.filter(imię__icontains=fraza)
     serializer = AutorSerializer(autorzy, many=True)
     return Response(serializer.data)

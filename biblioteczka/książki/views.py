@@ -48,10 +48,11 @@ def osoba_szczegóły(request, id):
     osoba =Osoba.objects.get(id=id)
     return render(request, "osoby/szczegóły.html", {"osoba": osoba})
 
-def wypozyczenie_lista(request):
+def wypożyczenie_lista(request):
     wypożyczenia = Wypożyczenie.objekts.all()
     return render(request, "wypożyczenia/lista.html",
                   {"wypożyczenia": wypożyczenia})
-def wypozyczenie_szczegóły(request, id):
+
+def wypożyczenie_szczegóły(request, id):
     wypożyczenie = Wypożyczenie.objects.get(id=id)
     return render(request, "wypożyczenia/szczegóły.html", {"wypożyczenie": wypożyczenie})

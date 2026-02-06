@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.urls import path
 
 # importujemy moduł views (plik views.py z tego samego katalogu co plik bieżący)
@@ -13,7 +12,6 @@ urlpatterns = [
     path("autorzy/<int:id>/", views.autor_szczegóły),
     path("osoby/", views.osoba_lista),
     path("osoby/<int:id>", views.osoba_szczegóły),
-    path("wypożyczenia/", views.wypozyczenie_lista),
-    path("wypożyczenia/<int:id>/", views.wypozyczenie_szczegóły),
-    
+    path("wypożyczenia/", views.wypożyczenie_lista),
+    path("wypożyczenia/<int:id>/", views.wypożyczenie_szczegóły),
 ]
