@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('autorzy/', autor_api_views.autor_lista),
     path('autorzy/<int:pk>/', autor_api_views.autor_szczegóły),
+    path('autorzy/<int:pk>/książki/', autor_api_views.autor_książki),
     path('autorzy/nowa/', autor_api_views.autor_nowa),
     path('autorzy/szukaj/<str:fraza>/', autor_api_views.autor_wg_nazwy),
 

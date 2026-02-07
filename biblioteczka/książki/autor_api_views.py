@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Autor
-from .serializers import AutorSerializer
+from .models import Autor, Książka
+from .serializers import AutorSerializer, KsiążkaSerializer
 
 
 @api_view(['GET'])
@@ -45,6 +45,18 @@ def autor_szczegóły(request, pk):
     elif request.method == 'DELETE':
         autor.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def autor_książki(request, pk):
+
+    try:
+        autor = Autor.objects.get(pk=pk)
+    except Autor.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    książki = Książka.objects.filter(autor=autor)
+    serializer = KsiążkaSerializer(książki, many=True)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def autor_nowa(request):
